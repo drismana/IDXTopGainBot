@@ -1,0 +1,39 @@
+name: Scrap and Tweet IDX Top 10 Gain Stocks
+
+on:
+  schedule:
+    - cron: '0 13 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish-data:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        r-version: ['4.1.1']
+    env:
+      MONGO_CONNECT_URI: ${{ secrets.MONGO_CONNECT_URI }}
+      MONGO_COLLECTION: ${{ secrets.MONGO_COLLECTION }}
+      MONGO_DB: ${{ secrets.MONGO_DB }}
+      TWITTER_APPS_NAME: ${{ secrets.TWITTER_APPS_NAME }}
+      TWITTER_API_KEY: ${{ secrets.TWITTER_API_KEY }}
+      TWITTER_API_SECRET: ${{ secrets.TWITTER_API_SECRET }}
+      TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
+      TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up R ${{ matrix.r-version }}
+        uses: r-lib/actions/setup-r@f57f1301a053485946083d7a45022b278929a78a
+        with:
+          r-version: ${{ matrix.r-version }}
+      - name: Install dependencies
+        run: |
+          install.packages(c("dplyr", "rtweet", "rvest", "mongolite", "ggplot2", "gridExtra"))
+        shell: Rscript {0}
+      - name: Scrap and insert into mongo
+        run: Rscript scrapper.R
+      - name: Tweet today movie release
+        run: Rscript tweetposter.R
