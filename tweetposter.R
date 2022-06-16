@@ -25,7 +25,7 @@ tweet_upload_time <- tweet_upload %>% select(ScrapTime) %>% head(1)
 token <- create_token(
   app = Sys.getenv("TWITTER_APPS_NAME"),
   consumer_key = Sys.getenv("TWITTER_API_KEY"),
-  consumer_secret = Sys.getenv("TWITTER_API_SECRET"),
+  consumer_secret = Sys.getenv("TWITTER_API_KEY_SECRET"),
   access_token = Sys.getenv("TWITTER_ACCESS_TOKEN"),
   access_secret = Sys.getenv("TWITTER_ACCESS_TOKEN_SECRET"))
   
