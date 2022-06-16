@@ -35,5 +35,5 @@ jobs:
         shell: Rscript {0}
       - name: Scrap and insert into mongo
         run: Rscript scrapper.R
-      - name: Tweet today movie release
+      - name: Tweet post
         run: Rscript tweetposter.R
