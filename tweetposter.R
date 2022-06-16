@@ -31,11 +31,11 @@ token <- create_token(
   
   
 ## crate temporary file name
-tmp <- tempfile(fileext = ".png")
+tmp <- tempfile(fileext = ".jpg")
 
 ## save as png
 ##png(tmp, 6, 6, "in", res = 127.5)
-png(tmp, height = 30*nrow(tweet_upload_post), width = 120*ncol(tweet_upload_post))
+jpeg(tmp, height = 30*nrow(tweet_upload_post), width = 120*ncol(tweet_upload_post))
 p<-tableGrob(tweet_upload_post)
 grid.arrange(p)
 dev.off()
