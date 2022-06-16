@@ -30,18 +30,39 @@ token <- create_token(
   access_secret = Sys.getenv("TWITTER_ACCESS_TOKEN_SECRET"))
   
   
-## crate temporary file name
-tmp <- tempfile(fileext = ".jpg")
-
-## save as png
-##png(tmp, 6, 6, "in", res = 127.5)
-jpeg(tmp, height = 30*nrow(tweet_upload_post), width = 120*ncol(tweet_upload_post))
-p<-tableGrob(tweet_upload_post)
-grid.arrange(p)
-dev.off()
+text_tweet <- paste0("Top 10 Gain Saham IDX",
+                     "\n",
+                     tweet_upload_time, " WIB :",
+                     "\n",
+                     "\n",
+                     "No,Kode,Persentase Selisih",
+                     "\n",
+                     "#1, ", tweet_upload_post[1,1],",", tweet_upload_post[1,6],
+                     "\n",
+                     "#2, ", tweet_upload_post[2,1],",", tweet_upload_post[2,6],
+                     "\n",
+                     "#3, ", tweet_upload_post[3,1],",", tweet_upload_post[3,6],
+                     "\n",
+                     "#4, ", tweet_upload_post[4,1],",", tweet_upload_post[4,6],
+                     "\n",
+                     "#5, ", tweet_upload_post[5,1],",", tweet_upload_post[5,6],
+                     "\n",
+                     "#6, ", tweet_upload_post[6,1],",", tweet_upload_post[6,6],
+                     "\n",
+                     "#7, ", tweet_upload_post[7,1],",", tweet_upload_post[7,6],
+                     "\n",
+                     "#8, ", tweet_upload_post[8,1],",", tweet_upload_post[8,6],
+                     "\n",
+                     "#9, ", tweet_upload_post[9,1],",", tweet_upload_post[9,6],
+                     "\n",
+                     "#10, ", tweet_upload_post[10,1],",", tweet_upload_post[10,6],
+                     "\n",
+                     "\n",
+                     "\n",
+                     "#IDX")
 
 ## post tweet with media attachment
-post_tweet(paste0("Top 10 Gain Saham pada ",tweet_upload_time), media = tmp,token = token)  
+post_tweet(status = text_tweet, token = token)  
 
 
 ## Ubah TweetStatus = 1
