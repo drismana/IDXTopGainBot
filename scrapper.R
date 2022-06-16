@@ -13,9 +13,9 @@ data_stock_top10gain <- data_stock %>% arrange(desc(X.)) %>% head(10) %>% mutate
 
 ## Insert to MongoDb
 
-connection_string = 'mongodb+srv://drismana:RaoY140288@clustermds.ctyf0.mongodb.net/sample_training'
-top10gain_collection = mongo(collection="top10gain",
-                         db="idxtopgain10bot",
+connection_string = Sys.getenv("MONGO_CONNECT_URI")
+top10gain_collection = mongo(collection = Sys.getenv("MONGO_COLLECTION"),
+                         db= Sys.getenv("MONGO_DB"),
                          url=connection_string)
 
 top10gain_collection$insert(data_stock_top10gain)
