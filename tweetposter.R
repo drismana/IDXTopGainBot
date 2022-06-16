@@ -31,17 +31,17 @@ token <- create_token(
   
   
 ## crate temporary file name
-tmp <- tempfile(fileext = ".png")
+tmp <- tempfile(fileext = ".jpg")
 
 ## save as png
 ##png(tmp, 6, 6, "in", res = 127.5)
-png(tmp, height = 30*nrow(tweet_upload_post), width = 120*ncol(tweet_upload_post))
+jpg(tmp, height = 30*nrow(tweet_upload_post), width = 120*ncol(tweet_upload_post))
 p<-tableGrob(tweet_upload_post)
 grid.arrange(p)
 dev.off()
 
 ## post tweet with media attachment
-post_tweet(paste0("Top 10 Gain Saham pada ",tweet_upload_time), media = tmp)  
+post_tweet(paste0("Top 10 Gain Saham pada ",tweet_upload_time), media = tmp,token = token)  
 
 
 ## Ubah TweetStatus = 1
