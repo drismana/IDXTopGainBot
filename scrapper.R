@@ -17,4 +17,5 @@ connection_string = 'mongodb+srv://drismana:RaoY140288@clustermds.ctyf0.mongodb.
 top10gain_collection = mongo(collection="top10gain",
                          db="idxtopgain10bot",
                          url=connection_string)
+
 top10gain_collection$insert(data_stock_top10gain)
