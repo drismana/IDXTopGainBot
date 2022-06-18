@@ -5,6 +5,7 @@ library(dplyr)
 library(rvest)
 library(rtweet)
 library(mongolite)
+library(scales)
 
 # Connect Mongo
 connection_string = Sys.getenv("MONGO_CONNECT_URI")
@@ -37,25 +38,25 @@ text_tweet <- paste0("Top 10 Gain Saham IDX",
                      "\n",
                      "No,Kode,Persentase Selisih",
                      "\n",
-                     "#1, ", tweet_upload_post[1,1],",", tweet_upload_post[1,6],
+                     "#1, ", tweet_upload_post[1,1],",", label_percent(accuracy = 0.01)(tweet_upload_post[1,6]),
                      "\n",
-                     "#2, ", tweet_upload_post[2,1],",", tweet_upload_post[2,6],
+                     "#2, ", tweet_upload_post[2,1],",", label_percent(accuracy = 0.01)(tweet_upload_post[2,6]),
                      "\n",
-                     "#3, ", tweet_upload_post[3,1],",", tweet_upload_post[3,6],
+                     "#3, ", tweet_upload_post[3,1],",", label_percent(accuracy = 0.01)(tweet_upload_post[3,6]),
                      "\n",
-                     "#4, ", tweet_upload_post[4,1],",", tweet_upload_post[4,6],
+                     "#4, ", tweet_upload_post[4,1],",", label_percent(accuracy = 0.01)(tweet_upload_post[4,6]),
                      "\n",
-                     "#5, ", tweet_upload_post[5,1],",", tweet_upload_post[5,6],
+                     "#5, ", tweet_upload_post[5,1],",", label_percent(accuracy = 0.01)(tweet_upload_post[5,6]),
                      "\n",
-                     "#6, ", tweet_upload_post[6,1],",", tweet_upload_post[6,6],
+                     "#6, ", tweet_upload_post[6,1],",", label_percent(accuracy = 0.01)(tweet_upload_post[6,6]),
                      "\n",
-                     "#7, ", tweet_upload_post[7,1],",", tweet_upload_post[7,6],
+                     "#7, ", tweet_upload_post[7,1],",", label_percent(accuracy = 0.01)(tweet_upload_post[7,6]),
                      "\n",
-                     "#8, ", tweet_upload_post[8,1],",", tweet_upload_post[8,6],
+                     "#8, ", tweet_upload_post[8,1],",", label_percent(accuracy = 0.01)(tweet_upload_post[8,6]),
                      "\n",
-                     "#9, ", tweet_upload_post[9,1],",", tweet_upload_post[9,6],
+                     "#9, ", tweet_upload_post[9,1],",", label_percent(accuracy = 0.01)(tweet_upload_post[9,6]),
                      "\n",
-                     "#10, ", tweet_upload_post[10,1],",", tweet_upload_post[10,6],
+                     "#10, ", tweet_upload_post[10,1],",", label_percent(accuracy = 0.01)(tweet_upload_post[10,6]),
                      "\n",
                      "\n",
                      "\n",
