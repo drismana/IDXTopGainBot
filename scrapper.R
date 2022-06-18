@@ -10,7 +10,8 @@ url  <- "https://www.idxchannel.com/market-stock"
 
 page <- url %>% read_html() 
 data_stock <- data.frame(page %>% html_table()) 
-data_stock_top10gain <- data_stock %>% arrange(desc(X.)) %>% head(10) %>% mutate (ScrapTime = format(Sys.time(), "%d-%b-%Y %H:%M:%S"), TweetStatus = 0)%>% rename (Kode=Code, Nama=Name, Sebelumnya = Prev., Penutupan = Close, Selisih = Change, SelisihPersen = X.) %>% select (-No.)
+tz <- 7  #WIB+7
+data_stock_top10gain <- data_stock %>% arrange(desc(X.)) %>% head(10) %>% mutate (ScrapTime = format(Sys.time() +tz*60*60, "%d-%b-%Y %H:%M:%S"), TweetStatus = 0)%>% rename (Kode=Code, Nama=Name, Sebelumnya = Prev., Penutupan = Close, Selisih = Change, SelisihPersen = X.) %>% select (-No.)
                 
 
 ## Insert to MongoDb
