@@ -7,4 +7,5 @@
 
 
 
+
 Twitter bot [@IdxTop10Gainer](https://twitter.com/IdxTop10Gainer)'s source code. The bot posts Indonesian Stock Exchange's top 10 gainer stocks on weekdays only. The data taken from [{IDXChannel}](https://www.idxchannel.com/market-stock). The system use [{rvest}](https://rvest.tidyverse.org/), the file send to twitter using [{rtweet}](https://docs.ropensci.org/rtweet/) and [GitHub Actions](https://docs.github.com/en/actions). The scraped data stored on [{MongoDB}](https://www.mongodb.com/). 
